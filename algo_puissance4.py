@@ -1,56 +1,90 @@
 
+from colors import Colors
 
-def create(taille_y,taille_x):
-    tab=[]
-    for y in range(taille_y):
-        ligne=[]
-        for x in range(taille_x):
-            ligne.append(".")
-        tab.append(ligne)
-        
-    return tab
+# Définition du joueur
+class Joueur:
+    def __init__ (self,couleur,nom):
+        self.couleur = couleur # En fait, soit ROUGE, soit JAUNE
+        self.jeton=self.couleur+"O"+Colors.RESET
+        self.nom = nom # Le nom du joueur
+        self.nb_victoires = int(0) # Nombre de victoires
+        # ordi ou 2e personne
 
-def affichage(tableau):
+    def presentation(self):
+        print(" Nom:  "+self.couleur+self.nom+Colors.RESET)
+        print(" Type:    "+self.jeton)
+        print("\n")
 
-    space= ""
-    if (len(tableau)>9):
-        space = " "
-    absc="  "+space
-    
-    for x in range(len(tableau[0])):
-        absc += str(x+1)+" "
-    print(absc)
+class Tableau:
+    def __init__ (self):
+        self.tab=[]
 
-    for y in range(len(tableau)):
+    def create_tab(self):
+        x=7
+        y=6
+        for j in range(y):
+            ligne=[]
+            for i in range(x):
+                ligne.append(".")
+            self.tab.append(ligne)
 
-        space=""
-        if ( y<9 and len(tableau)>=10 ):
-            space=" "
+    def affichage(self):
+        space= ""
+        absc= " "
+        for i in range(len(self.tab[0])):
+            absc += str(i+1)+" "
+        print(absc)
 
-        chaine =str(y+1)+space+" "
-        for point in tableau[y]:
-            if ( point=="B" ):
-                chaine+="."+" "
-            elif (point == "B" ):
-                chaine+="B"+" "
-            elif (point == "O"):
-                chaine+="\033[34m" + point + "\033[0m"+ " "
-            elif (point == "@"):
-                chaine+="\033[31m" + point + "\033[0m"+ " "
-            elif (point == "."):
+        for y in range(len(self.tab)):
+            chaine = " "
+            for point in self.tab[y]:
                 chaine+=point+ " "
-        print(chaine)
+            print(chaine)
 
+            
+            
+colo=input("Quel couleur est votre jeton? : Y/R  ")
+Nom1=input("Quel est votre nom? :  ")
 
-taille_x=7
-taille_y=6
-nb_pions=21
+if colo=="Y":
+    color1=Colors.YELLOW
+    Joueur1=Joueur(color1,Nom1)
+    Nom2=input("Joueur2 quel est votre nom? :  ")
+    color2=Colors.RED
+    Joueur2=Joueur(color2,Nom2)
+else:
+    color1=Colors.RED
+    Joueur1=Joueur(color1,Nom1)
+    Nom2=input("Joueur2 quel est votre nom? :  ")
+    color2=Colors.YELLOW
+    Joueur2=Joueur(color2,Nom2)
 
-tab=create(taille_y,taille_x)
+Joueur1.presentation()
+Joueur2.presentation()
 
-affichage(tab)
+Joueurs=[Joueur1,Joueur2]
 
+tab=Tableau()
+tab.create_tab()
+tab.affichage()
+
+rep=0
 a=0
 
 while a==0:
-    rep=input("Dans quelle colonne voulez-vous placer votre pion : ")
+    
+    for i in Joueurs:
+        tab.affichage()
+        rep=int(input(i.nom+" : Dans quelle colonne voulez-vous placer votre pion : "))
+        j=5
+        while j>=0:     
+            if (tab.tab[j][rep-1] == "."):
+                tab.tab[j][rep-1]=i.jeton
+                j=-1
+            else:
+                j-=1
+
+    
+
+    
+
