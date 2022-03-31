@@ -1,0 +1,26 @@
+body{
+    background-color: gray;
+    text-align: center;
+}
+
+#game{
+    display: grid;
+    grid-template-columns: repeat(7, 110px);
+    grid-template-rows: repeat(6, 110px);
+    width:770px;
+    height:600px;
+    margin: 0 auto;
+    justify-content: center;
+    background-color: blue;
+}
+
+.cell{
+    border: 5px solid blue;
+    background-color: white;
+    border-radius: 50%;
+    outline: 5px solid blue;
+}
+
+.cell:hover{
+    background-color: blue;
+}
