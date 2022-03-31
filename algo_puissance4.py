@@ -70,21 +70,35 @@ tab=Tableau()
 tab.create_tab()
 
 rep=0
-a=0
 
-while a==0:
+count=0
+
+while count<=4:
     
-    for i in Joueurs:
+    for joueur in Joueurs:
+        count=0
+        print(count)
         tab.affichage()
-        rep=int(input(i.nom+" : Dans quelle colonne voulez-vous placer votre pion : "))
+        rep=int(input(joueur.nom+" : Dans quelle colonne voulez-vous placer votre pion : "))
         j=5
         while j>=0:     
             if (tab.tab[j][rep-1] == "."):
-                tab.tab[j][rep-1]=i.jeton
+                tab.tab[j][rep-1]=joueur.jeton
                 Last_jeton=[j,rep-1]
                 j=-1
             else:
                 j-=1
-        
-        
+
+        for i in range(7):
+            for j in range(5):
+
+                if tab.tab[j][i]==joueur.jeton and tab.tab[j+1][i]==joueur.jeton:
+                    count+=1              
+                
+        if count==3:
+            print("WIN!!")
             
+                
+
+
+        
