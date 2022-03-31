@@ -15,6 +15,8 @@ class Joueur:
         print(" Type:    "+self.jeton)
         print("\n")
 
+    
+
 class Tableau:
     def __init__ (self):
         self.tab=[]
@@ -66,7 +68,6 @@ Joueurs=[Joueur1,Joueur2]
 
 tab=Tableau()
 tab.create_tab()
-tab.affichage()
 
 rep=0
 a=0
@@ -80,11 +81,10 @@ while a==0:
         while j>=0:     
             if (tab.tab[j][rep-1] == "."):
                 tab.tab[j][rep-1]=i.jeton
+                Last_jeton=[j,rep-1]
                 j=-1
             else:
                 j-=1
-
-    
-
-    
-
+        
+        
+            
