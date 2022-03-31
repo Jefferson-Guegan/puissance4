@@ -17,7 +17,7 @@ html="""
 
         <h1>Bienvenue sur cette version réseau du célèbre jeu : Puissance 4</h1>
 
-        <form id="box" action="http://localhost:8000/cgi-bin/partie.py" method="post">
+        <form id="box" action="http://localhost:8000/partie.py" method="post">
             <legend> Lancer une partie de puissance 4 </legend>
             <div id="container">
                 <div id="user">
