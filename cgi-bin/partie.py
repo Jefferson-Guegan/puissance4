@@ -1,5 +1,21 @@
 #!/usr/bin/python3
 import cgi
+#import socket
+
+#CGI
+form= cgi.FieldStorage()
+userName=form.getvalue("userName")
+
+#Socket
+#host, port = ('localhost', 6666)
+#try:
+#    socket=socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+#    socket.connect((host, port))
+#    print("Client conecté !")
+#except ConnectionRefusedError:
+#   print("Connexion au serveur échouée !")
+#finally:
+#    socket.close()
 
 print("Content-type: text/html; charset=utf-8\n")
 

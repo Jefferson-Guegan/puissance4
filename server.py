@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import http.server
 import os
+import socket
 
 #Intialisation du port et de l'addresse
 port = 8000
